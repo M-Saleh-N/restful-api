@@ -20,14 +20,16 @@ class User(Resource):
         users["email"] = request.json['email']
         return {user_id: users[user_id], "email": users["email"]}, 201
     
-    def put(self):
-        user_id = request.json['user_id']
+   
+    
+class UserResource(Resource):
+     def put(self, user_id):
         users[user_id] = request.json['users_name']
         users["email"] = request.json['email']
         return {user_id: users[user_id], "email": users["email"]}, 200
-    
 
 api.add_resource(User, '/users')
+api.add_resource(UserResource, '/users/<int:user_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
